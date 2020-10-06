@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 // stops tests from indirectly asserting on behaviour of child components
-import { shallow } from "enzyme";
-import App from "./App";
-import "../setupTests";
+import { shallow } from 'enzyme';
+import App from './App';
+import '../setupTests';
 
 const app = shallow(<App />);
 
@@ -19,3 +19,10 @@ it("adds a new gift to `state` when clicking the `add gift` button", () => {
 
 	expect(app.state().gifts).toEqual([{ id: 1 }]);
 });
+
+it("adds a new gift to the rendered list when clicking the `add gift` button", () => {
+    app.find('.btn-add').simulate('click')
+
+    expect(app.find('.gift-list').children().length).toEqual(2)
+})
+
